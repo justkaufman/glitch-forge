@@ -14,6 +14,13 @@ st.markdown("""
 h1, h2, h3, p, span, label, .stMarkdown { color: #e0e0e0 !important; font-family: 'Space Mono', monospace !important; }
 .stSelectbox label, .stSlider label, .stTextInput label, .stNumberInput label { color: #ff3366 !important; text-transform: uppercase; font-size: 11px !important; letter-spacing: 2px; }
 div[data-testid="stSidebar"] { background-color: #111111; border-right: 1px solid #ff336633; }
+div[data-testid="stSidebar"] * { color: #888888 !important; }
+div[data-testid="stSidebar"] .stSelectbox label,
+div[data-testid="stSidebar"] .stSlider label,
+div[data-testid="stSidebar"] .stTextInput label,
+div[data-testid="stSidebar"] .stNumberInput label,
+div[data-testid="stSidebar"] .stCheckbox label,
+div[data-testid="stSidebar"] .stRadio label { color: #888888 !important; }
 </style>
 """, unsafe_allow_html=True)
 
