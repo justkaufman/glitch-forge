@@ -12,20 +12,27 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 .stApp { background-color: #0a0a0a; }
 h1, h2, h3, p, span, label, .stMarkdown { color: #e0e0e0 !important; font-family: 'Space Mono', monospace !important; }
-div[data-testid="stSidebar"] { background-color: #ffffff !important; border-right: 1px solid #cccccc; }
-div[data-testid="stSidebar"],
-div[data-testid="stSidebar"] *,
-div[data-testid="stSidebar"] p,
-div[data-testid="stSidebar"] span,
-div[data-testid="stSidebar"] label,
-div[data-testid="stSidebar"] div { color: #333333 !important; font-family: 'Space Mono', monospace !important; }
-div[data-testid="stSidebar"] .stMarkdown h3 { color: #111111 !important; font-size: 13px !important; letter-spacing: 2px; text-transform: uppercase; }
-div[data-testid="stSidebar"] .stSlider label,
-div[data-testid="stSidebar"] .stSelectbox label,
-div[data-testid="stSidebar"] .stTextInput label,
-div[data-testid="stSidebar"] .stNumberInput label,
-div[data-testid="stSidebar"] .stCheckbox label,
-div[data-testid="stSidebar"] .stRadio label { color: #333333 !important; text-transform: uppercase; font-size: 11px !important; letter-spacing: 2px; }
+section[data-testid="stSidebar"] { background-color: #f0f0f0 !important; border-right: 1px solid #cccccc !important; }
+section[data-testid="stSidebar"] * { color: #222222 !important; font-family: 'Space Mono', monospace !important; }
+section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] p,
+section[data-testid="stSidebar"] [data-testid="stWidgetLabel"] span,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] p { color: #222222 !important; font-size: 11px !important; letter-spacing: 1px; text-transform: uppercase; }
+section[data-testid="stSidebar"] h3 { color: #000000 !important; font-size: 13px !important; font-weight: 700 !important; letter-spacing: 3px; }
+[data-testid="stDownloadButton"] button, [data-testid="stButton"] button {
+  background-color: #ff3366 !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-family: 'Space Mono', monospace !important;
+  font-weight: 700 !important;
+  letter-spacing: 3px !important;
+  text-transform: uppercase !important;
+  padding: 0.6rem 2rem !important;
+}
+[data-testid="stDownloadButton"] button:hover, [data-testid="stButton"] button:hover {
+  background-color: #cc0044 !important;
+  color: #ffffff !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
