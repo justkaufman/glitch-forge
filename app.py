@@ -12,15 +12,20 @@ st.markdown("""
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
 .stApp { background-color: #0a0a0a; }
 h1, h2, h3, p, span, label, .stMarkdown { color: #e0e0e0 !important; font-family: 'Space Mono', monospace !important; }
-.stSelectbox label, .stSlider label, .stTextInput label, .stNumberInput label { color: #ff3366 !important; text-transform: uppercase; font-size: 11px !important; letter-spacing: 2px; }
-div[data-testid="stSidebar"] { background-color: #111111; border-right: 1px solid #ff336633; }
-div[data-testid="stSidebar"] * { color: #888888 !important; }
-div[data-testid="stSidebar"] .stSelectbox label,
+div[data-testid="stSidebar"] { background-color: #ffffff !important; border-right: 1px solid #cccccc; }
+div[data-testid="stSidebar"],
+div[data-testid="stSidebar"] *,
+div[data-testid="stSidebar"] p,
+div[data-testid="stSidebar"] span,
+div[data-testid="stSidebar"] label,
+div[data-testid="stSidebar"] div { color: #333333 !important; font-family: 'Space Mono', monospace !important; }
+div[data-testid="stSidebar"] .stMarkdown h3 { color: #111111 !important; font-size: 13px !important; letter-spacing: 2px; text-transform: uppercase; }
 div[data-testid="stSidebar"] .stSlider label,
+div[data-testid="stSidebar"] .stSelectbox label,
 div[data-testid="stSidebar"] .stTextInput label,
 div[data-testid="stSidebar"] .stNumberInput label,
 div[data-testid="stSidebar"] .stCheckbox label,
-div[data-testid="stSidebar"] .stRadio label { color: #888888 !important; }
+div[data-testid="stSidebar"] .stRadio label { color: #333333 !important; text-transform: uppercase; font-size: 11px !important; letter-spacing: 2px; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -124,9 +129,20 @@ def add_vignette(img):
 def add_text_brutal(img, headline, subtext, font_color, glitch_text, text_offset=0):
     draw = ImageDraw.Draw(img)
     w, h = img.size
+    padding = w // 16
     try:
-        font_lg = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", w // 8)
-        font_sm = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf", w // 22)
+        font_path_bold = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+        font_path_mono = "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"
+        font_size = w // 8
+        font_lg = ImageFont.truetype(font_path_bold, font_size)
+        # Shrink until headline fits within canvas width
+        while font_size > 10:
+            font_lg = ImageFont.truetype(font_path_bold, font_size)
+            bbox_test = draw.textbbox((0, 0), headline, font=font_lg)
+            if (bbox_test[2] - bbox_test[0]) <= w - padding * 2:
+                break
+            font_size -= 2
+        font_sm = ImageFont.truetype(font_path_mono, w // 22)
     except:
         font_lg = ImageFont.load_default()
         font_sm = ImageFont.load_default()
